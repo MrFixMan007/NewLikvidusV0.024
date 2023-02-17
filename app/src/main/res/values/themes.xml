@@ -54,6 +54,9 @@
     </style>
 
     <style name="ButtonIconSave" parent="Widget.Material3.Button.Icon">
-    <item name="android:foreground">@drawable/ic_baseline_save_24</item>
+        <item name="android:foreground">@drawable/ic_baseline_save_24</item>
+    </style>
+
+    <style name="CustomButton">
     </style>
 </resources>

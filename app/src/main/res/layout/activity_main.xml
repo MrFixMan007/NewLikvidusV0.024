@@ -8,6 +8,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Menu">
 
     <Button
+        style="@style/CustomButton"
         android:id="@+id/button"
         android:onClick="openLikvidCalcMenu"
         android:text="@string/main_menu_button1"
@@ -17,6 +18,7 @@
         tools:ignore="NotSibling" />
 
     <Button
+        style="@style/CustomButton"
         android:id="@+id/button1"
         android:layout_alignTop="@+id/button"
         android:layout_toEndOf="@id/button"
@@ -25,18 +27,21 @@
         app:layout_marginRightPercent="2%" />
 
     <Button
+        style="@style/CustomButton"
         android:id="@+id/button2"
         android:layout_below="@+id/button"
         android:layout_alignStart="@+id/button"
         android:text="@string/main_menu_button3" />
 
     <Button
+        style="@style/CustomButton"
         android:id="@+id/button3"
         android:layout_below="@+id/button1"
         android:layout_alignStart="@+id/button1"
         android:text="@string/main_menu_button4" />
 
     <Button
+        style="@style/CustomButton"
         android:id="@+id/button4"
         android:layout_below="@+id/button2"
         android:layout_alignStart="@+id/button2"
