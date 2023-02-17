@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.NewLikvidus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/darkRed</item>
+        <item name="colorPrimaryVariant">@color/darkRed</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">17sp</item>
+    </style>
+    <!-- TODO: minsize продумать -->
+    <style name="ThemeOverlay.AppCompat.Menu" parent="Theme.NewLikvidus">
+        <item name="layout_heightPercent">30%</item>
+        <item name="layout_widthPercent">47%</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ThemeOverlay.AppCompat.LikvidCalc" parent="Theme.NewLikvidus">
+        <item name="layout_heightPercent">10%</item>
+        <item name="layout_widthPercent">16%</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textViewStyle">@style/CustomTextView</item>
+        <item name="editTextStyle">@style/CustomEditText</item>
+    </style>
+
+    <style name="CustomTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">35sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CustomTextViewInTable" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">@drawable/back</item>
+        <item name="android:paddingLeft">5sp</item>
+    </style>
+
+    <style name="CustomTextViewInTableAnswer" parent="CustomTextViewInTable">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:hint">"0.0"</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ButtonIconSave" parent="Widget.Material3.Button.Icon">
+    <item name="android:foreground">@drawable/ic_baseline_save_24</item>
+    </style>
+</resources>

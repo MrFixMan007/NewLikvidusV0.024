@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">NewLikvidus</string>
+    <string name="saved_calcs">Сохранённые расчёты</string>
+
+    <string name="main_menu_button1">Температура заливки</string>
+    <string name="main_menu_button2">Литейный расчёт</string>
+    <string name="main_menu_button3">Шихтовка</string>
+    <string name="main_menu_button4">Контроль качества литейной продукции</string>
+    <string name="main_menu_button5">Справочник модельщика и формовщика</string>
+
+    <string name="likvid_calc_menu_button1">Заливка фасонного литья</string>
+    <string name="likvid_calc_main_menu_button2">Заливка слитков</string>
+    <string name="likvid_calc_main_menu_button3">Справочник температур плавления металлов и ферросплавов</string>
+
+    <string name="C">C</string>
+    <string name="Si">Si</string>
+    <string name="Mn">Mn</string>
+    <string name="P">P</string>
+    <string name="S">S</string>
+    <string name="Cr">Cr</string>
+    <string name="Ni">Ni</string>
+    <string name="Cu">Cu</string>
+    <string name="Al">Al</string>
+    <string name="Ti">Ti</string>
+    <string name="V">V</string>
+    <string name="Mo">Mo</string>
+    <string name="W">W</string>
+
+    <string name="calculate">Рассчитать</string>
+    <string name="tempCast">Заливка, \u2103</string>
+    <string name="likvidAnsw">Ликвидус (Т начала кристализации), \u2103</string>
+    <string name="tempInStove">Температура в печи, \u2103</string>
+</resources>
