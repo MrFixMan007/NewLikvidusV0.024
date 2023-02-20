@@ -19,11 +19,4 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
-
-    public synchronized void makeFromAsset(Context context){
-        instance = Room.databaseBuilder(context.getApplicationContext(),
-                        AppDatabase.class, "database")
-                .fallbackToDestructiveMigration()
-                .createFromAsset("database/defData.db").build();
-    }
 }

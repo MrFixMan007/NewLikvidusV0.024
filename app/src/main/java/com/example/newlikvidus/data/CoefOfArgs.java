@@ -7,6 +7,13 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "CoefsOfArgs")
 public class CoefOfArgs {
 
+    public CoefOfArgs(String name, float value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public CoefOfArgs() {}
+
     @PrimaryKey(autoGenerate = true)
     public long id;
 

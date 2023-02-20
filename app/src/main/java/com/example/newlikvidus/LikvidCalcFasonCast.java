@@ -3,6 +3,7 @@ package com.example.newlikvidus;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +17,10 @@ import java.util.regex.Pattern;
 
 public class LikvidCalcFasonCast extends AppCompatActivity {
 
+    public String[] coefNames;
+    public float[] coefValues;
     private Button btn_Calc;
-    private static final double temp = 1537.0d;
+    private double temp = 1537.0d;
     private TextView c, si, mn, p, s, cr, ni, cu, al, ti, v, mo, w;
     private EditText editText, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8, editText9, editText10, editText11, editText12;
     private TextView Answer, AnswTempCast, AnswTempCast1, AnswTempInStove, AnswTempInStove1;
@@ -27,6 +30,14 @@ public class LikvidCalcFasonCast extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likvid_calc_fason_cast);
+
+        Bundle arguments = getIntent().getExtras();
+        coefNames = arguments.getStringArray("coefNames");
+        coefValues = arguments.getFloatArray("coefValues");
+        temp = coefValues[0];
+
+        Log.i("LOL", String.valueOf(coefNames.length));
+        Log.i("LOL", String.valueOf(coefValues.length));
 
         addListenerOnButtons();
         addListenerOnTexts();
