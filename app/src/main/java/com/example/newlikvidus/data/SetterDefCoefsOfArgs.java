@@ -6,6 +6,8 @@ import java.util.List;
 
 public abstract class SetterDefCoefsOfArgs {
     static private CoefOfArgs[] coefsOfArgs= {new CoefOfArgs("1stTemp", 1537),
+            new CoefOfArgs("summator1", 50), new CoefOfArgs("summator2", 70),
+            new CoefOfArgs("summator3", 40), new CoefOfArgs("summator4", 40),
             new CoefOfArgs("C", 88), new CoefOfArgs("Si", 8),
             new CoefOfArgs("Mn", 5),  new CoefOfArgs("P", 30),  new CoefOfArgs("S", 25),
             new CoefOfArgs("Cr", 1.5f), new CoefOfArgs("Ni", 4), new CoefOfArgs("Cu", 5),
