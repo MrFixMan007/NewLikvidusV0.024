@@ -21,55 +21,59 @@ public class LikvidusCalculationTest {
         return list;
     }
     @Test
-    public void test1(){
-        assertEquals("Не совпало", ToList(1511).get(0), likvid.calculate(0.3f).get(0));
+    public void correctInput1(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1511).get(0), likvid.calculate(0.3f).get(0));
     }
     @Test
-    public void test2(){
-        assertEquals("Не совпало", ToList(1507f).get(0), likvid.calculate(0.3f, 0.5f).get(0));
+    public void correctInput2(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1507f).get(0), likvid.calculate(0.3f, 0.5f).get(0));
     }
     @Test
-    public void test3(){
-        assertEquals("Не совпало", ToList(1506f).get(0), likvid.calculate(0.3f, 0.5f, 0.15f).get(0));
+    public void correctInput3(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1506f).get(0), likvid.calculate(0.3f, 0.5f, 0.15f).get(0));
     }
     @Test
-    public void test4(){
-        assertEquals("Не совпало", ToList(1476f).get(0), likvid.calculate(0.3f, 0.5f, 0.15f, 1).get(0));
+    public void correctInput4(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1476f).get(0), likvid.calculate(0.3f, 0.5f, 0.15f, 1).get(0));
     }
     @Test
-    public void test5(){
-        assertEquals("Не совпало", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f));
+    public void correctInput5(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f));
     }
     @Test
-    public void test6(){
-        assertEquals("Слишком большой ввод в процентах", ToList(0, 0, 0, 0, 0), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 100.1f));
+    public void wrongInputBigNumber1(){
+        assertEquals("Проверка на слишком большое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 100.1f));
     }
     @Test
-    public void test7(){
-        assertEquals("Слишком маленький ввод в процентах", ToList(0, 0, 0, 0, 0), likvid.calculate(-0.3f, 0.5f, 0.15f, 1, 100.1f));
+    public void wrongInputSmallNumber1(){
+        assertEquals("Проверка на слишком маленькое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(-0.3f, 0.5f, 0.15f, 1, 1.1f));
     }
     @Test
-    public void test8(){
-        assertEquals("Ничего не ввёл", ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate());
+    public void nonInput1(){
+        assertEquals("Проверка на отсутствие ввода не пройдена!\n", ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate());
     }
     @Test
-    public void test9(){
-        assertEquals("Ненормальное число", ToList(0, 0, 0, 0, 0), likvid.calculate(10000000000000000000000000000000000.0000000000000000000000000000f));
+    public void wrongInputBigNumber2(){
+        assertEquals("Проверка на слишком большое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(10000000000000000000000000000000000.0000000000000000000000000000f));
     }
     @Test
-    public void test10(){
-        assertEquals("Не совпало", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.00000005f));
+    public void correctInput6(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.00000005f));
     }
     @Test
-    public void test11(){
-        assertEquals("Не совпало", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0000005f));
+    public void correctInput7(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0000005f));
     }
     @Test
-    public void test12(){
-        assertEquals("Не совпало", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0005f));
+    public void correctInput8(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(14488, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0005f));
     }
     @Test
-    public void test13(){
-        assertEquals("Не совпало", ToList(1446, 1496, 1516, 1536, 1556), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.5f));
+    public void correctInput9(){
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1446, 1496, 1516, 1536, 1556), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.5f));
+    }
+    @Test
+    public void allZeroInput1(){
+        assertEquals("Проверка на все нули не пройдена!\n", ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate(0, 0, 0, 0, 0));
     }
 }

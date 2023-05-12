@@ -20,7 +20,9 @@ public class LikvidusCalculation {
         this.m2 = m2;
         this.m3 = m3;
         this.m4 = m4;
-        this.koefs = koefs;
+        this.koefs = new ArrayList<>();
+        for (int i = 0; i < koefs.size(); i++)
+            this.koefs.add(koefs.get(i));
     }
 
     public List<Float> calculate(float... input){
