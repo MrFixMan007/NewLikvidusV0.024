@@ -2,19 +2,21 @@ package com.example.newlikvidus;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikvidusCalculation {
+public class LikvidusCalculation implements ICalculatable{
     private float temp;
     float m1, m2, m3, m4;
     List<Float> koefs;
     List<Float> input;
     List<Float> output;
 
-    public LikvidusCalculation(float temp, float m1, float m2, float m3, float m4, List<Float> koefs) {
+    public LikvidusCalculation(float temp, float m1, float m2, float m3, float m4, @NonNull List<Float> koefs) {
         this.temp = temp;
         this.m1 = m1;
         this.m2 = m2;
@@ -25,7 +27,7 @@ public class LikvidusCalculation {
             this.koefs.add(koefs.get(i));
     }
 
-    public List<Float> calculate(float... input){
+    public List<Float> calculate(@NonNull float... input){
         List<Float> listInput = new ArrayList<Float>();
 
         for (int i = 0; i < input.length; i++){
@@ -39,7 +41,7 @@ public class LikvidusCalculation {
         return calculate(listInput);
     }
 
-    public List<Float> calculate(List<Float> input){
+    public List<Float> calculate(@NonNull List<Float> input){
         output = new ArrayList<Float>();
         this.input = input;
         float res = temp;
@@ -61,16 +63,16 @@ public class LikvidusCalculation {
             }
             res -= koefs.get(i) * input.get(i);
         }
-        this.output.add(round(res,0));
-        this.output.add(round(res + m1,0));
-        this.output.add(round(res + m2, 0));
-        this.output.add(round(res + m1 + m3, 0));
-        this.output.add(round(res + m2 + m4, 0));
+        this.output.add(ICalculatable.round(res,0));
+        this.output.add(ICalculatable.round(res + m1,0));
+        this.output.add(ICalculatable.round(res + m2, 0));
+        this.output.add(ICalculatable.round(res + m1 + m3, 0));
+        this.output.add(ICalculatable.round(res + m2 + m4, 0));
 
         return getOutput();
     }
 
-    private List<Float> getOutput() {
+    public List<Float> getOutput() {
         List<Float> res = new ArrayList<>();
         for (int i = 0; i < output.size(); i++) {
             res.add(output.get(i));
@@ -78,11 +80,4 @@ public class LikvidusCalculation {
         return res;
     }
 
-    public static Float round(float value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_EVEN);
-        return bd.floatValue();
-    }
 }
