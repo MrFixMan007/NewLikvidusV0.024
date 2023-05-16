@@ -1,11 +1,7 @@
 package com.example.newlikvidus;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,21 +24,21 @@ public class LikvidusCalculation implements ICalculatable{
     }
 
     public List<Float> calculate(@NonNull float... input){
-        List<Float> listInput = new ArrayList<Float>();
+        List<Float> listInput = new ArrayList<>();
 
-        for (int i = 0; i < input.length; i++){
-            listInput.add(input[i]);
+        for (float v : input) {
+            listInput.add(v);
         }
         return calculate(listInput);
     }
 
     public List<Float> calculate(){
-        List<Float> listInput = new ArrayList<Float>();
+        List<Float> listInput = new ArrayList<>();
         return calculate(listInput);
     }
 
     public List<Float> calculate(@NonNull List<Float> input){
-        output = new ArrayList<Float>();
+        output = new ArrayList<>();
         this.input = input;
         float res = temp;
 
