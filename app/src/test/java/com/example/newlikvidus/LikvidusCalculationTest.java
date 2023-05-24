@@ -1,13 +1,11 @@
 package com.example.newlikvidus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class LikvidusCalculationTest {
 
@@ -18,6 +16,7 @@ public class LikvidusCalculationTest {
         for (int i = 0; i < input.length; i++){
             list.add(input[i]);
         }
+
         return list;
     }
     @Test
