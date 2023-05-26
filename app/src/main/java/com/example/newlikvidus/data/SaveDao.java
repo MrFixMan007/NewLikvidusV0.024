@@ -3,15 +3,17 @@ package com.example.newlikvidus.data;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
 @Dao
 public interface SaveDao {
     @Query("SELECT * FROM save WHERE save_id = :id")
     Save getById(long id);
+    @Query("SELECT * FROM save")
+    List<Save> getAll();
 
     @Insert
     long insert(Save save); //вернёт id вставленной записи

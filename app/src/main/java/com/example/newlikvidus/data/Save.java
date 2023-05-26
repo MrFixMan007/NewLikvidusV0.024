@@ -1,5 +1,6 @@
 package com.example.newlikvidus.data;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -28,6 +29,10 @@ public class Save {
         if(description.length() <= 300) this.description = String.valueOf(description);
         else this.description = description.substring(0, 300);
         this.type_id_fk = type_int;
+    }
+
+    public Save(String name, String date, int type_int){
+        this(name, date, "", type_int);
     }
 
     public Save(String name, String date, String description, int type_int) {
@@ -92,5 +97,14 @@ public class Save {
                 "(int) save_id = "+save_id+", (str("+name.length()+"))name = "+name+", (str)date = "+date+", " +
                 "(str("+description.length()+"))description = "+description+", (int)type_int = " + type_id_fk +
                 '}';
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Save save = (Save) obj;
+        return this.name.equals(save.name) && this.save_id == save.save_id && this.date.equals(save.date) && this.description.equals(save.description)
+                && this.type_id_fk == save.type_id_fk;
     }
 }
