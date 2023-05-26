@@ -19,7 +19,7 @@ public abstract class SetterDefCoefsOfArgs {
         CoefOfArgsDao coefOfArgsDao = db.coefOfArgsDao();
 
         if(coefOfArgsDao.getCountOfCoefsOfArgs() == 0) {
-            coefOfArgsDao.insertAll(coefsOfArgs);
+            coefOfArgsDao.insertSome(coefsOfArgs);
         }
         //Log.i("TAG", "ФУНКЦИЯ ЗАВЕРШИЛАСЬ");
     }

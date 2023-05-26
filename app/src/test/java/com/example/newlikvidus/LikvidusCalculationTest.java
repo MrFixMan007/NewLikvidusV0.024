@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LikvidusCalculationTest {
-
     List<Float> koefs = ToList(88f, 8f, 5f, 30f, 25f, 1.5f, 4f, 5f, 3f, 20f, 2f, 2f, 1f);
     LikvidusCalculation likvid = new LikvidusCalculation(1537f, 50f, 70f, 40f, 40f, koefs);
     private List<Float> ToList(float... input){
@@ -16,16 +15,17 @@ public class LikvidusCalculationTest {
         for (int i = 0; i < input.length; i++){
             list.add(input[i]);
         }
-
         return list;
     }
     @Test
     public void correctInput1(){
-        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1511).get(0), likvid.calculate(0.3f).get(0));
+        assertEquals("Проверка на правильность вычисления не пройдена!\n",
+                ToList(1511).get(0), likvid.calculate(0.3f).get(0));
     }
     @Test
     public void correctInput2(){
-        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1507f).get(0), likvid.calculate(0.3f, 0.5f).get(0));
+        assertEquals("Проверка на правильность вычисления не пройдена!\n",
+                ToList(1507f).get(0), likvid.calculate(0.3f, 0.5f).get(0));
     }
     @Test
     public void correctInput3(){

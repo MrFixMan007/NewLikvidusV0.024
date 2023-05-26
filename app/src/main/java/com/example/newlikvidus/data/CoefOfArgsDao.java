@@ -27,7 +27,7 @@ public interface CoefOfArgsDao {
     void insert(CoefOfArgs coefOfArgs);
 
     @Insert
-    void insertAll(CoefOfArgs... coefsOfArgs);
+    void insertSome(CoefOfArgs... coefsOfArgs);
 
     @Update
     void update(CoefOfArgs coefOfArgs);
