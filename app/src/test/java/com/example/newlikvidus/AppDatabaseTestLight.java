@@ -1,9 +1,6 @@
 package com.example.newlikvidus;
 
 import static org.junit.Assert.assertEquals;
-
-import com.example.newlikvidus.data.CoefOfArgs;
-import com.example.newlikvidus.data.CoefOfArgsDao;
 import com.example.newlikvidus.data.Save;
 import com.example.newlikvidus.data.SaveDao;
 
@@ -30,7 +27,7 @@ public class AppDatabaseTestLight {
         }
     }*/
     //AppDatabase db = Mockito.mock(AppDatabase.class);
-    CoefOfArgsDao coefOfArgsDao = Mockito.mock(CoefOfArgsDao.class);
+    //CoefOfArgsDao coefOfArgsDao = Mockito.mock(CoefOfArgsDao.class);
     SaveDao saveDao = Mockito.mock(SaveDao.class);
     //List<CoefOfArgs> coefs = new ArrayList<>();
     List<String> testList = new ArrayList<>();
@@ -42,13 +39,13 @@ public class AppDatabaseTestLight {
         data.add(new Save(1, "Сохранённый расчёт", "26.05.2023", "описание", 2));
         data.add(new Save(1, "Сохранённый расчёт 1Сохранённый расчёт 1Сохранённый расчёт 1Сохранённый расчёт 1" +
                 "Сохранённый расчёт ;;;;;", "26.05.2023", "описание", 2));
-        Mockito.when(coefOfArgsDao.getCountOfCoefsOfArgs()).thenReturn(testList.size());
+        //Mockito.when(coefOfArgsDao.getCountOfCoefsOfArgs()).thenReturn(testList.size());
         Mockito.when(saveDao.getById(0)).thenReturn(data.get(0));
     }
-    @Test
-    public void test1(){
-        assertEquals(testList.size(), coefOfArgsDao.getCountOfCoefsOfArgs());
-    }
+//    @Test
+//    public void test1(){
+//        assertEquals(testList.size(), coefOfArgsDao.getCountOfCoefsOfArgs());
+//    }
     @Test
     public void test2(){
         assertEquals(data.get(0), saveDao.getById(0));
@@ -74,13 +71,13 @@ public class AppDatabaseTestLight {
     }
 
 
-    private List<CoefOfArgs> toList(CoefOfArgs... input){
-        List<CoefOfArgs> list = new ArrayList<CoefOfArgs>();
-        for (int i = 0; i < input.length; i++){
-            list.add(input[i]);
-        }
-        return list;
-    }
+//    private List<CoefOfArgs> toList(CoefOfArgs... input){
+//        List<CoefOfArgs> list = new ArrayList<CoefOfArgs>();
+//        for (int i = 0; i < input.length; i++){
+//            list.add(input[i]);
+//        }
+//        return list;
+//    }
     private List<String> newList(String... input){
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < input.length; i++){

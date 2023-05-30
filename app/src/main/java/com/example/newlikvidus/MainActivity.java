@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.newlikvidus.data.AppDatabase;
-import com.example.newlikvidus.data.CoefOfArgs;
-import com.example.newlikvidus.data.CoefOfArgsDao;
 import com.example.newlikvidus.data.SetterDefCoefsOfArgs;
 
 import java.util.List;
@@ -32,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SetterDefCoefsOfArgs.addDefCoefs(db);
-                CoefOfArgsDao coefOfArgsDao = db.coefOfArgsDao();
+                //CoefOfArgsDao coefOfArgsDao = db.coefOfArgsDao();
 
-                coefNames = coefOfArgsDao.getAllNames();
-                coefValues = coefOfArgsDao.getAllValues();
+                //coefNames = coefOfArgsDao.getAllNames();
+                //coefValues = coefOfArgsDao.getAllValues();
                 ready = true;
                 Log.i("LOL", String.valueOf(coefValues.length));
             }
