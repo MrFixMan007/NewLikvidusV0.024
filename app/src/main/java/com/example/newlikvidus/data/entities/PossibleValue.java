@@ -1,9 +1,14 @@
 package com.example.newlikvidus.data.entities;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import com.example.newlikvidus.data.AppDatabase;
+import com.example.newlikvidus.data.dao.CharacterDao;
 
 @Entity(tableName = "possible_value", foreignKeys = @ForeignKey(entity = Character.class,
         parentColumns = "character_id", childColumns = "character_id_fk"))
