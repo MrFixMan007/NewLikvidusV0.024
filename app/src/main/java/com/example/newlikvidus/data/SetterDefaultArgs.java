@@ -1,10 +1,6 @@
 package com.example.newlikvidus.data;
 
-import android.util.Log;
-
-import java.util.List;
-
-public abstract class SetterDefCoefsOfArgs {
+public abstract class SetterDefaultArgs {
 //    static private CoefOfArgs[] coefsOfArgs= {new CoefOfArgs("1stTemp", 1537),
 //            new CoefOfArgs("summator1", 50), new CoefOfArgs("summator2", 70),
 //            new CoefOfArgs("summator3", 40), new CoefOfArgs("summator4", 40),

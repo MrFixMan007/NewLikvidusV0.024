@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.newlikvidus.data.AppDatabase;
-import com.example.newlikvidus.data.SetterDefCoefsOfArgs;
-
-import java.util.List;
+import com.example.newlikvidus.data.SetterDefaultArgs;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                SetterDefCoefsOfArgs.addDefCoefs(db);
+                SetterDefaultArgs.addDefCoefs(db);
                 //CoefOfArgsDao coefOfArgsDao = db.coefOfArgsDao();
 
                 //coefNames = coefOfArgsDao.getAllNames();

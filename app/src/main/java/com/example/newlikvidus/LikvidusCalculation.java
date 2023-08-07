@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LikvidusCalculation implements ICalculatable{
+    @NonNull
     private float temp;
-    float m1, m2, m3, m4;
+    @NonNull
+    private float m1, m2, m3, m4;
+    @NonNull
     List<Float> koefs;
     List<Float> input;
     List<Float> output;

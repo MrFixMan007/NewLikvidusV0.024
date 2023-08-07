@@ -23,6 +23,21 @@ public class LikvidusCalculationTest {
                 ToList(1511).get(0), likvid.calculate(0.3f).get(0));
     }
     @Test
+    public void wrongInputBigNumber1(){
+        assertEquals("Проверка на слишком большое число входных данных не пройдена!\n",
+                ToList(0, 0, 0, 0, 0), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 100.1f));
+    }
+    @Test
+    public void wrongInputSmallNumber1(){
+        assertEquals("Проверка на слишком маленькое число входных данных не пройдена!\n",
+                ToList(0, 0, 0, 0, 0), likvid.calculate(-0.3f, 0.5f, 0.15f, 1, 1.1f));
+    }
+    @Test
+    public void nonInput1(){
+        assertEquals("Проверка на отсутствие ввода не пройдена!\n",
+                ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate());
+    }
+    @Test
     public void correctInput2(){
         assertEquals("Проверка на правильность вычисления не пройдена!\n",
                 ToList(1507f).get(0), likvid.calculate(0.3f, 0.5f).get(0));
@@ -40,18 +55,6 @@ public class LikvidusCalculationTest {
         assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f));
     }
     @Test
-    public void wrongInputBigNumber1(){
-        assertEquals("Проверка на слишком большое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 100.1f));
-    }
-    @Test
-    public void wrongInputSmallNumber1(){
-        assertEquals("Проверка на слишком маленькое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(-0.3f, 0.5f, 0.15f, 1, 1.1f));
-    }
-    @Test
-    public void nonInput1(){
-        assertEquals("Проверка на отсутствие ввода не пройдена!\n", ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate());
-    }
-    @Test
     public void wrongInputBigNumber2(){
         assertEquals("Проверка на слишком большое число входных данных не пройдена!\n", ToList(0, 0, 0, 0, 0), likvid.calculate(10000000000000000000000000000000000.0000000000000000000000000000f));
     }
@@ -65,14 +68,14 @@ public class LikvidusCalculationTest {
     }
     @Test
     public void correctInput8(){
-        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(14488, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0005f));
+        assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1448, 1498, 1518, 1538, 1558), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.0005f));
     }
     @Test
     public void correctInput9(){
         assertEquals("Проверка на правильность вычисления не пройдена!\n", ToList(1446, 1496, 1516, 1536, 1556), likvid.calculate(0.3f, 0.5f, 0.15f, 1, 1.1f, 0, 0.5f));
     }
     @Test
-    public void allZeroInput1(){
+    public void correctInput10(){
         assertEquals("Проверка на все нули не пройдена!\n", ToList(1537, 1587, 1607, 1627.0f, 1647.0f), likvid.calculate(0, 0, 0, 0, 0));
     }
 }
