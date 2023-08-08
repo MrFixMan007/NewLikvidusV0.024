@@ -17,7 +17,7 @@ import com.example.newlikvidus.data.entities.Type;
 import com.example.newlikvidus.data.entities.Value;
 
 @androidx.room.Database(entities = {Save.class, Type.class,
-        Character.class, Value.class, PossibleValue.class}, version = 6)
+        Character.class, Value.class, PossibleValue.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
     public abstract SaveDao saveDao();

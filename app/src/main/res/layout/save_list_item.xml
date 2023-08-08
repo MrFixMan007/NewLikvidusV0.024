@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="200dp"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="1dp"
         android:text="Название"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="200dp"
         android:layout_marginTop="2dp"
         android:text="Описание"
         app:layout_constraintLeft_toLeftOf="@+id/name"
@@ -26,9 +30,10 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="-5dp"
         android:text="Дата"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/darkRed"
+        app:layout_constraintRight_toLeftOf="@+id/more"
         app:layout_constraintTop_toTopOf="@+id/name"/>
 
     <TextView
@@ -37,7 +42,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="Результат"
+        android:textColor="@color/black"
         app:layout_constraintRight_toRightOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/date"/>
+
+    <ImageView
+        android:id="@+id/more"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_more24"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@android:color/black"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

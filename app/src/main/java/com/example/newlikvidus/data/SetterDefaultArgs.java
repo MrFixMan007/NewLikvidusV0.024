@@ -46,10 +46,14 @@ public abstract class SetterDefaultArgs {
     private static Save[] saves = new Save[]{
             new Save("Тестовый сейв", "описано", 1),
             new Save("Тестовый результат", 1),
+            new Save("Тестовый результат абра кадабра", 1),
+            new Save("Тестовый результат", "описано надеюсь не слышком длинно", 1),
     };
     private static Value[] values = new Value[]{
             new Value(1,1,1538f),
             new Value(1,2,1600f),
+            new Value(1,3,1800f),
+            new Value(1,4,2200f),
     };
 
     public static void addDefCoefs(AppDatabase db){
