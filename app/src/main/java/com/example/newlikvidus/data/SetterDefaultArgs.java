@@ -3,9 +3,13 @@ package com.example.newlikvidus.data;
 import android.util.Log;
 
 import com.example.newlikvidus.data.dao.CharacterDao;
+import com.example.newlikvidus.data.dao.SaveDao;
 import com.example.newlikvidus.data.dao.TypeDao;
+import com.example.newlikvidus.data.dao.ValueDao;
 import com.example.newlikvidus.data.entities.Character;
+import com.example.newlikvidus.data.entities.Save;
 import com.example.newlikvidus.data.entities.Type;
+import com.example.newlikvidus.data.entities.Value;
 
 public abstract class SetterDefaultArgs {
     private static Type[] types = new Type[]{
@@ -22,6 +26,7 @@ public abstract class SetterDefaultArgs {
             new Type("Шихта")};
 
     private static Character[] characters = new Character[]{
+            new Character(1, "RES", 0f, 3000f, "Результат", "Градус", 0, 1),
             new Character(1, "W", 0f, 100f, "Вольфрам", "%", 0, 1),
             new Character(1, "Cr", 0f, 100f, "Хром", "%", 0, 1.5f),
             new Character(1, "Co", 0f, 100f, "Кобальт", "%", 0, 1.5f),
@@ -38,8 +43,17 @@ public abstract class SetterDefaultArgs {
             new Character(1, "C", 0f, 100f, "Углерод", "%", 0, 88),
     };
 
+    private static Save[] saves = new Save[]{
+            new Save("Тестовый сейв", "описано", 1),
+            new Save("Тестовый результат", 1),
+    };
+    private static Value[] values = new Value[]{
+            new Value(1,1,1538f),
+            new Value(1,2,1600f),
+    };
+
     public static void addDefCoefs(AppDatabase db){
-        Log.i("TAG", "ФУНКЦИЯ ЗАПУСТИЛАСЬ");
+//        Log.i("TAG", "ФУНКЦИЯ ЗАПУСТИЛАСЬ");
         TypeDao typeDao = db.typeDao();
         CharacterDao characterDao = db.characterDao();
 
@@ -50,6 +64,26 @@ public abstract class SetterDefaultArgs {
         if(characterDao.getCountOfCharacters() == 0) {
             characterDao.insertSome(characters);
         }
-        Log.i("TAG", "ФУНКЦИЯ ЗАВЕРШИЛАСЬ");
+//        Log.i("TAG", "ФУНКЦИЯ ЗАВЕРШИЛАСЬ");
+    }
+
+    public static void addTestSaves(AppDatabase db){
+        SaveDao saveDao = db.saveDao();
+        ValueDao valueDao = db.valueDao();
+
+        if(saveDao.getCountOfSaves() == 0) {
+            saveDao.insertSome(saves);
+        }
+        if(valueDao.getCountOfCharacters() == 0){
+            valueDao.insertSome(values);
+        }
+    }
+
+    public static Type[] getTypes() {
+        return types;
+    }
+
+    public static Character[] getCharacters() {
+        return characters;
     }
 }

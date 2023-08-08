@@ -12,6 +12,8 @@ import java.util.List;
 public interface SaveDao extends BaseDao<Save> {
     @Query("SELECT * FROM save WHERE save_id = :id")
     Save getById(long id);
+    @Query("SELECT * FROM save WHERE type_id_fk = :id")
+    List<Save> getByType_id(long id);
     @Query("SELECT * FROM save")
     List<Save> getAll();
     @Query("SELECT COUNT(*) FROM save")

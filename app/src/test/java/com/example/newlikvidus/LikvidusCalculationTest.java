@@ -2,6 +2,8 @@ package com.example.newlikvidus;
 
 import static org.junit.Assert.assertEquals;
 
+import com.example.newlikvidus.activity.LikvidusCalculation;
+
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.newlikvidus;
+package com.example.newlikvidus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.percentlayout.widget.PercentLayoutHelper;
@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.newlikvidus.R;
 
 import java.util.ArrayList;
 import java.util.List;

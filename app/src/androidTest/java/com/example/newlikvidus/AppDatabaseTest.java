@@ -25,9 +25,6 @@ import org.junit.runner.RunWith;
 import androidx.room.Room;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-
-import java.io.Console;
-import java.io.IOException;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
@@ -38,8 +35,7 @@ public class AppDatabaseTest extends TestCase {
     private CharacterDao characterDao;
     private PossibleValueDao possibleValueDao;
     private ValueDao valueDao;
-    private static Save[] saves = new Save[]{new Save("Расчёт температуры ликвидус",
-            "описано", "26.05.2023", 1)};
+    private static Save[] saves = new Save[]{new Save("Расчёт температуры ликвидус", "описано", 1)};
 
     private static Character[] characters = new Character[]{new Character(1, "C", 0f, 100f),
             new Character(1, "S", 0f, 100f, "Сера"),

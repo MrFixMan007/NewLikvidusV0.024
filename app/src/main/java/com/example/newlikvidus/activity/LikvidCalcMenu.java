@@ -1,46 +1,37 @@
-package com.example.newlikvidus;
+package com.example.newlikvidus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.newlikvidus.R;
 
 public class LikvidCalcMenu extends AppCompatActivity {
-
-    public String[] coefNames;
-    public float[] coefValues;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likvid_calc_menu);
 
-        Bundle arguments = getIntent().getExtras();
+//        Bundle arguments = getIntent().getExtras();
 
-        coefNames = arguments.getStringArray("coefNames");
-        coefValues = arguments.getFloatArray("coefValues");
-
-      Log.i("LOL", String.valueOf(coefNames.length));
-      Log.i("LOL", String.valueOf(coefValues.length));
+//        saves = arguments.getStringArray("saves", Save);
+//        coefValues = arguments.getFloatArray("coefValues");
     }
 
     public void openLikvidCalcIngot(View view){
         Intent intent = new Intent(this, LikvidCalcIngot.class);
-
-        intent.putExtra("coefNames", coefNames);
-        intent.putExtra("coefValues", coefValues);
         startActivity(intent);
     }
 
     public void openLikvidCalcFasonCast(View view){
         Intent intent = new Intent(this, LikvidCalcFasonCast.class);
+        startActivity(intent);
+    }
 
-        intent.putExtra("coefNames", coefNames);
-        intent.putExtra("coefValues", coefValues);
+    public void openLikvidSavedCalc(View view){
+        Intent intent = new Intent(this, LikvidSaves.class);
         startActivity(intent);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LikvidCalcMenu"
+    tools:context=".activity.LikvidCalcMenu"
     android:theme="@style/ThemeOverlay.AppCompat.Menu">
 
     <Button
@@ -35,10 +35,11 @@
         android:text="@string/likvid_calc_main_menu_button3" />
 
     <Button
-        style="@style/CustomButton"
         android:id="@+id/button3"
+        style="@style/CustomButton"
         android:layout_below="@+id/button1"
         android:layout_alignStart="@+id/button1"
+        android:onClick="openLikvidSavedCalc"
         android:text="@string/saved_calcs" />
 
 </androidx.percentlayout.widget.PercentRelativeLayout>

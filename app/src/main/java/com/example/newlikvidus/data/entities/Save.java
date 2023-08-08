@@ -2,9 +2,13 @@ package com.example.newlikvidus.data.entities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity(tableName = "save", foreignKeys = @ForeignKey(entity = Type.class,
         parentColumns = "type_id", childColumns = "type_id_fk"))
@@ -14,20 +18,18 @@ public class Save {
     private long save_id;
     @NonNull
     private String name;
-    @NonNull
-    private String date;
+    private String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     @NonNull
     private long type_id_fk;
     private String description;
 
     //Конструкторы
     public Save(){}
-    public Save(@NonNull String name, @NonNull String date, int type_int){
-        this(name, date, "", type_int);
+    public Save(@NonNull String name, int type_int){
+        this(name, "", type_int);
     }
-    public Save(@NonNull String name, @NonNull String date, @NonNull String description, int type_int) {
+    public Save(@NonNull String name, @NonNull String description, int type_int) {
         setName(name);
-        setDate(date);
         setDescription(description);
         setType_id_fk(type_int);
     }
@@ -57,9 +59,6 @@ public class Save {
     public void setSave_id(long save_id) {
         if(save_id > 0) this.save_id = save_id;
     }
-    public void setDate(@NonNull String date) {
-        this.date = String.valueOf(date);
-    }
     public void setName(@NonNull String name) {
         if(name.length() <= 100) this.name = String.valueOf(name);
         else this.name = name.substring(0, 100);
@@ -70,6 +69,9 @@ public class Save {
     }
     public void setType_id_fk(long type_id_fk) {
         if(type_id_fk > 0) this.type_id_fk = type_id_fk;
+    }
+
+    public void setDate(String date) {
     }
 
     //Функции

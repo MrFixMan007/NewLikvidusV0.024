@@ -64,7 +64,7 @@ public class Value {
     //Функции
     @Override
     public String toString() {
-        return "Value{ (long)value_id="+value_id+", (long)character_id_fk="+character_id_fk+"(long)save_id_fk="+save_id_fk+
-                "(float)value="+value+"}";
+        return "Value{ (long)value_id="+value_id+", (long)character_id_fk="+character_id_fk+", (long)save_id_fk="+save_id_fk+
+                ", (float)value="+value+"}";
     }
 }

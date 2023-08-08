@@ -14,19 +14,19 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".LikvidSavedCalc"
+            android:name=".activity.LikvidSaves"
             android:exported="false" />
         <activity
-            android:name=".LikvidManual"
+            android:name=".activity.LikvidManual"
             android:exported="false" />
         <activity
-            android:name=".LikvidCalcIngot"
+            android:name=".activity.LikvidCalcIngot"
             android:exported="false" />
         <activity
-            android:name=".LikvidCalcFasonCast"
+            android:name=".activity.LikvidCalcFasonCast"
             android:exported="false" />
         <activity
-            android:name=".LikvidCalcMenu"
+            android:name=".activity.LikvidCalcMenu"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,11 +1,13 @@
-package com.example.newlikvidus;
+package com.example.newlikvidus.activity;
 
 import androidx.annotation.NonNull;
+
+import com.example.newlikvidus.ICalculatable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikvidusCalculation implements ICalculatable{
+public class LikvidusCalculation implements ICalculatable {
     @NonNull
     private float temp;
     @NonNull

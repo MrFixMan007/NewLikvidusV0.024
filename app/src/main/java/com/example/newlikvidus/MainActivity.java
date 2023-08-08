@@ -7,14 +7,37 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.newlikvidus.activity.LikvidCalcMenu;
 import com.example.newlikvidus.data.AppDatabase;
 import com.example.newlikvidus.data.SetterDefaultArgs;
+import com.example.newlikvidus.data.dao.CharacterDao;
+import com.example.newlikvidus.data.dao.PossibleValueDao;
+import com.example.newlikvidus.data.dao.SaveDao;
+import com.example.newlikvidus.data.dao.TypeDao;
+import com.example.newlikvidus.data.dao.ValueDao;
+import com.example.newlikvidus.data.entities.PossibleValue;
+import com.example.newlikvidus.data.entities.Save;
+import com.example.newlikvidus.data.entities.Type;
+import com.example.newlikvidus.data.entities.Value;
+import com.example.newlikvidus.data.entities.Character;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppDatabase db;
-    public String[] coefNames;
-    public float[] coefValues;
+
+//    public Save[] saves;
+//    public Type[] types;
+//    public Character[] characters;
+//    public List<PossibleValue> possibleValues;
+//    public List<Value> values;
+
+    private SaveDao saveDao;
+    private TypeDao typeDao;
+    private CharacterDao characterDao;
+    private PossibleValueDao possibleValueDao;
+    private ValueDao valueDao;
     public boolean ready = false;
 
     @Override
@@ -28,22 +51,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SetterDefaultArgs.addDefCoefs(db);
-                //CoefOfArgsDao coefOfArgsDao = db.coefOfArgsDao();
+                SetterDefaultArgs.addTestSaves(db);
 
-                //coefNames = coefOfArgsDao.getAllNames();
-                //coefValues = coefOfArgsDao.getAllValues();
+//                saveDao = db.saveDao();
+//                typeDao = db.typeDao();
+//                characterDao = db.characterDao();
+//                possibleValueDao = db.possibleValueDao();
+//                valueDao = db.valueDao();
+//
+//                saves = (Save[])saveDao.getAll().toArray();
+//                types = (Type[]) typeDao.getAll().toArray();
+//                characters = (Character[]) characterDao.getAll().toArray();
+//                possibleValues = possibleValueDao.getAll();
+//                values = valueDao.getAll();
+
                 ready = true;
-                Log.i("LOL", String.valueOf(coefValues.length));
+//                Log.i("SAVES", String.valueOf(saves.length));
+//                Log.i("TYPES", String.valueOf(types.length));
+//                Log.i("CHARACTERS", String.valueOf(characters.length));
             }
         }).start();
     }
 
     public void openLikvidCalcMenu(View view){
         Intent intent = new Intent(this, LikvidCalcMenu.class);
-        Log.i("LOL", String.valueOf(coefValues.length));
 
-        intent.putExtra("coefNames", coefNames);
-        intent.putExtra("coefValues", coefValues);
+//        intent.putExtra("saves", saves);
+//        intent.putExtra("types", types);
+//        intent.putExtra("characters", characters);
         if(ready)startActivity(intent);
     }
 }
