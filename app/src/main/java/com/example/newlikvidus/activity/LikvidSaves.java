@@ -27,11 +27,6 @@ public class LikvidSaves extends AppCompatActivity {
     public boolean ready = false;
     private static Context context;
 
-    interface SaveListener {
-        void onPersons(List<Save> saves);
-    }
-    private List<SaveListener> listeners = new ArrayList<>(); // Все слушатели
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,18 +60,5 @@ public class LikvidSaves extends AppCompatActivity {
 
     private static Context getContext(){
         return LikvidSaves.context;
-    }
-
-    public void removeSave(Save save){
-//        int index = saves.indexOf(save);
-//        if(index == -1) return;
-        saves.remove(save);
-    }
-
-    public void addListener(SaveListener listener) {
-        listeners.add(listener);
-    }
-    public void removeListener(SaveListener listener) {
-        listeners.remove(listener);
     }
 }
