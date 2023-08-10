@@ -14,6 +14,8 @@ public interface CharacterDao extends BaseDao<Character> {
     Character getById(long id);
     @Query("SELECT * FROM character")
     List<Character> getAll();
+    @Query("SELECT * FROM character WHERE type_id_fk = :id")
+    List<Character> getAllByType_id(long id);
     @Query("SELECT COUNT(*) FROM character")
     int getCountOfCharacters();
 }

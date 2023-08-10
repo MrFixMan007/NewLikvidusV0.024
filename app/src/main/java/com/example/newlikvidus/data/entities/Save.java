@@ -7,13 +7,14 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity(tableName = "save", foreignKeys = @ForeignKey(entity = Type.class,
         parentColumns = "type_id", childColumns = "type_id_fk"))
 //parentColumns указал id из таблицы type, childColumns - внешний ключ из Save
-public class Save {
+public class Save implements Serializable {
     @PrimaryKey(autoGenerate = true) @NonNull
     private long save_id;
     @NonNull

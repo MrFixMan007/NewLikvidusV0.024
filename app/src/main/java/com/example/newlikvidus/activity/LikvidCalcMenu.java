@@ -27,6 +27,7 @@ public class LikvidCalcMenu extends AppCompatActivity {
 
     public void openLikvidCalcFasonCast(View view){
         Intent intent = new Intent(this, LikvidCalcFasonCast.class);
+        intent.putExtra("type_id", (long) 1);
         startActivity(intent);
     }
 

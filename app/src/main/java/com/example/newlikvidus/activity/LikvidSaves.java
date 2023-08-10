@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.newlikvidus.R;
 import com.example.newlikvidus.SaveAdapter;
@@ -53,7 +55,12 @@ public class LikvidSaves extends AppCompatActivity {
                 // создаем адаптер
                 SaveAdapter adapter = new SaveAdapter(getContext(), saves, values);
                 // устанавливаем для списка адаптер
-                recyclerView.setAdapter(adapter);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
             }
         }).start();
     }
