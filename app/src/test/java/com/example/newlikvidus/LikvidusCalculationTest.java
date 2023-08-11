@@ -2,7 +2,7 @@ package com.example.newlikvidus;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.newlikvidus.activity.LikvidusCalculation;
+import com.example.newlikvidus.activity.LikvidCalculator;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LikvidusCalculationTest {
     List<Float> koefs = ToList(88f, 8f, 5f, 30f, 25f, 1.5f, 4f, 5f, 3f, 20f, 2f, 2f, 1f);
-    LikvidusCalculation likvid = new LikvidusCalculation(1537f, 50f, 70f, 40f, 40f, koefs);
+    LikvidCalculator likvid = new LikvidCalculator(1537f, 50f, 70f, 40f, 40f, koefs);
     private List<Float> ToList(float... input){
         List<Float> list = new ArrayList<Float>();
         for (int i = 0; i < input.length; i++){

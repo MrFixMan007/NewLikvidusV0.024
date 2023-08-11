@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newlikvidus.data.entities.Save;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapter.ViewHolder>{

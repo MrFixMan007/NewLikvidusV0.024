@@ -7,7 +7,7 @@ import com.example.newlikvidus.ICalculatable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikvidusCalculation implements ICalculatable {
+public class LikvidCalculator implements ICalculatable {
     @NonNull
     private float temp;
     @NonNull
@@ -17,7 +17,7 @@ public class LikvidusCalculation implements ICalculatable {
     List<Float> input;
     List<Float> output;
 
-    public LikvidusCalculation(float temp, float m1, float m2, float m3, float m4, @NonNull List<Float> koefs) {
+    public LikvidCalculator(float temp, float m1, float m2, float m3, float m4, @NonNull List<Float> koefs) {
         this.temp = temp;
         this.m1 = m1;
         this.m2 = m2;

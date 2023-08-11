@@ -13,20 +13,16 @@ public class LikvidCalcMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likvid_calc_menu);
-
-//        Bundle arguments = getIntent().getExtras();
-
-//        saves = arguments.getStringArray("saves", Save);
-//        coefValues = arguments.getFloatArray("coefValues");
     }
 
     public void openLikvidCalcIngot(View view){
-        Intent intent = new Intent(this, LikvidCalcIngot.class);
+        Intent intent = new Intent(this, LikvidCalcRender.class);
+        intent.putExtra("type_id", (long) 2);
         startActivity(intent);
     }
 
     public void openLikvidCalcFasonCast(View view){
-        Intent intent = new Intent(this, LikvidCalcFasonCast.class);
+        Intent intent = new Intent(this, LikvidCalcRender.class);
         intent.putExtra("type_id", (long) 1);
         startActivity(intent);
     }

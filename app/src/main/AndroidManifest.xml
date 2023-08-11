@@ -20,10 +20,7 @@
             android:name=".activity.LikvidManual"
             android:exported="false" />
         <activity
-            android:name=".activity.LikvidCalcIngot"
-            android:exported="false" />
-        <activity
-            android:name=".activity.LikvidCalcFasonCast"
+            android:name=".activity.LikvidCalcRender"
             android:exported="false" />
         <activity
             android:name=".activity.LikvidCalcMenu"

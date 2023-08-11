@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -18,8 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newlikvidus.activity.LikvidCalcFasonCast;
-import com.example.newlikvidus.activity.LikvidSaves;
+import com.example.newlikvidus.activity.LikvidCalcRender;
 import com.example.newlikvidus.data.entities.Save;
 
 import java.util.List;
@@ -80,7 +78,7 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LikvidCalcFasonCast.class);
+                    Intent intent = new Intent(context, LikvidCalcRender.class);
                     intent.putExtra("save", saveAdapter.saves.get(getAdapterPosition()));
                     context.startActivity(intent);
                 }
