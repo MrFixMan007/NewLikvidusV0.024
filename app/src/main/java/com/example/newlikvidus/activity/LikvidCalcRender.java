@@ -32,12 +32,15 @@ public class LikvidCalcRender extends AppCompatActivity {
     private List<Value> valueList;
     private CharacterDao characterDao;
     private List<Character> characterList;
-    public boolean ready = false;
+    private boolean ready = false;
     private static Context context;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private TextView resultDescription, resultDescription1, resultDescription2, resultValue, resultValue1, resultValue2, resultValue3, resultValue4;
+    
     private LikvidCalculator likvidCalculator;
+    private List<Float> unswerList;
+    private LikvidusCalcAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +118,7 @@ public class LikvidCalcRender extends AppCompatActivity {
                 ready = true;
 
                 // создаем адаптер
-                LikvidusCalcAdapter adapter = new LikvidusCalcAdapter(getContext(), characterNameList.subList(5, characterNameList.size()), characterValueList.subList(5, characterValueList.size()));
+                adapter = new LikvidusCalcAdapter(getContext(), characterNameList.subList(5, characterNameList.size()), characterValueList.subList(5, characterValueList.size()));
                 // устанавливаем для списка адаптер
                 runOnUiThread(new Runnable() {
                     @Override
@@ -136,7 +139,14 @@ public class LikvidCalcRender extends AppCompatActivity {
     }
 
     public void calculate(View view){
-
+        List<Float> inputValueList = adapter.getInputValues();
+        unswerList = likvidCalculator.calculate(inputValueList);
+        
+        resultValue.setText(unswerList.get(0));
+        resultValue1.setText(unswerList.get(1));
+        resultValue2.setText(unswerList.get(2));
+        resultValue3.setText(unswerList.get(3));
+        resultValue4.setText(unswerList.get(4));
     }
     public void save(View view){
 
