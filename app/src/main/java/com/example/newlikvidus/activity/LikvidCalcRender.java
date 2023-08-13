@@ -37,7 +37,7 @@ public class LikvidCalcRender extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private TextView resultDescription, resultDescription1, resultDescription2, resultValue, resultValue1, resultValue2, resultValue3, resultValue4;
-
+    private LikvidCalculator likvidCalculator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +82,7 @@ public class LikvidCalcRender extends AppCompatActivity {
                 
                 List<String> characterNameList = new ArrayList<>();
                 List<Float> characterValueList = new ArrayList<>();
+                List<Float> characterKoefList = new ArrayList<>();
 
                 characterList = characterDao.getAllByType_id(type_id);
 
@@ -98,10 +99,12 @@ public class LikvidCalcRender extends AppCompatActivity {
                     for (Character character: characterList) {
                         characterNameList.add(character.getName());
                         characterValueList.add(character.getDefault_value());
+                        characterKoefList.add(character.getKoef());
                     }
                 } else{
                     for (Character character: characterList) {
                         characterNameList.add(character.getName());
+                        characterKoefList.add(character.getKoef());
                         Log.e("Char_ID", String.valueOf(character.getCharacter_id()));
                         Log.e("Save_ID", String.valueOf(save.getSave_id()));
 
@@ -122,6 +125,10 @@ public class LikvidCalcRender extends AppCompatActivity {
                 });
             }
         }).start();
+
+        likvidCalculator = new LikvidCalculator(characterNameList.get(0).getValue(), characterNameList.get(1).getValue(),
+                                                                characterNameList.get(2).getValue(), characterNameList.get(3).getValue(), 
+                                                                characterKoefList.characterNameList.subList(5, characterKoefList.size()));
     }
 
     private static Context getContext(){
