@@ -26,6 +26,10 @@ public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapte
     private LayoutInflater inflater;
     private List<String> characterNameList;
     private List<Float> characterValueList;
+
+    private List<EditText> editTexts;
+    private List<TextView> textViews;
+    
     private static Context context;
 
     public LikvidusCalcAdapter(Context context, List<String> characterNameList, List<Float> characterValueList) {
@@ -51,7 +55,15 @@ public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapte
 
     @Override
     public int getItemCount() {
-        return characterNameList.size();
+        return editTexts.size();
+    }
+
+    public List<Float> getInputValues(){
+        List<Float> inputValueList = new ArrayList<>();
+        for(EditText editText: editTexts){
+            inputValueList.add(editText.getText());
+        }
+        return inputValueList;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,6 +74,9 @@ public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapte
             super(view);
             nameView = view.findViewById(R.id.LikvidCalcNameOfCharacter);
             value = view.findViewById(R.id.LikvidCalcValueOfCharacter);
+            
+            likvidusCalcAdapter.textViews.add(value);
+            likvidusCalcAdapter.editTexts.add(nameView);
         }
         //linkAdapter прикрепляет ссылку на адаптер и возвращает его
         public ViewHolder linkAdapter(LikvidusCalcAdapter likvidusCalcAdapter) {
