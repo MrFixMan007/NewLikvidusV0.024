@@ -1,4 +1,4 @@
-package com.example.newlikvidus.activity;
+package com.example.newlikvidus;
 
 import androidx.annotation.NonNull;
 

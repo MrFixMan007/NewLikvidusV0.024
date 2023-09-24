@@ -26,10 +26,10 @@ public class Save implements Serializable {
 
     //Конструкторы
     public Save(){}
-    public Save(@NonNull String name, int type_int){
+    public Save(@NonNull String name, long type_int){
         this(name, "", type_int);
     }
-    public Save(@NonNull String name, @NonNull String description, int type_int) {
+    public Save(@NonNull String name, @NonNull String description, long type_int) {
         setName(name);
         setDescription(description);
         setType_id_fk(type_int);

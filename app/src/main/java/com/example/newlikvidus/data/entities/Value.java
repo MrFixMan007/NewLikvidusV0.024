@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "value", foreignKeys = {@ForeignKey(entity = Character.class,
         parentColumns = "character_id", childColumns = "character_id_fk"), @ForeignKey(entity = Save.class,
-        parentColumns = "save_id", childColumns = "save_id_fk")})
+        parentColumns = "save_id", childColumns = "save_id_fk", onDelete = ForeignKey.CASCADE)})
 //parentColumns указал id из таблиц character и save, childColumns - внешний ключ из PossibleValue и Save
 public class Value {
     @PrimaryKey(autoGenerate = true) @NonNull

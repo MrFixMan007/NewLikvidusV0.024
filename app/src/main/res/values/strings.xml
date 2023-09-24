@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">NewLikvidus</string>
     <string name="saved_calcs">Сохранённые расчёты</string>
+    <string name="saved_calc">Сохранённый расчёт</string>
+    <string name="saved">сохранено</string>
 
     <string name="main_menu_button1">Температура заливки</string>
     <string name="main_menu_button2">Литейный расчёт</string>
@@ -39,7 +41,9 @@
     <string name="remove_item_window">Удалить из списка?</string>
     <string name="remove_description_of_item_window">Убрать описание?</string>
     <string name="rename_item_window">Введите новое название</string>
+    <string name="name_item_window">Введите название</string>
     <string name="change_description_item_window">Введите новое описание</string>
+    <string name="description_item_window">Введите описание</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="cancel">Отмена</string>

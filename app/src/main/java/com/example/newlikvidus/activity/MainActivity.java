@@ -1,13 +1,12 @@
-package com.example.newlikvidus;
+package com.example.newlikvidus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.example.newlikvidus.activity.LikvidCalcMenu;
+import com.example.newlikvidus.R;
 import com.example.newlikvidus.data.AppDatabase;
 import com.example.newlikvidus.data.SetterDefaultArgs;
 import com.example.newlikvidus.data.dao.CharacterDao;
@@ -15,13 +14,6 @@ import com.example.newlikvidus.data.dao.PossibleValueDao;
 import com.example.newlikvidus.data.dao.SaveDao;
 import com.example.newlikvidus.data.dao.TypeDao;
 import com.example.newlikvidus.data.dao.ValueDao;
-import com.example.newlikvidus.data.entities.PossibleValue;
-import com.example.newlikvidus.data.entities.Save;
-import com.example.newlikvidus.data.entities.Type;
-import com.example.newlikvidus.data.entities.Value;
-import com.example.newlikvidus.data.entities.Character;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                SetterDefaultArgs.addDefCoefs(db);
-                SetterDefaultArgs.addTestSaves(db);
+                SetterDefaultArgs.addDefaultData(db);
+//                SetterDefaultArgs.addTestSaves(db);
 
 //                saveDao = db.saveDao();
 //                typeDao = db.typeDao();

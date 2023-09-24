@@ -44,7 +44,7 @@ public class AppDatabaseTest extends TestCase {
     @Before
     public void createDb() throws Exception{
         db = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().getContext(), AppDatabase.class).build();
-        SetterDefaultArgs.addDefCoefs(db);
+        SetterDefaultArgs.addDefaultData(db);
         saveDao = db.saveDao();
         typeDao = db.typeDao();
         characterDao = db.characterDao();

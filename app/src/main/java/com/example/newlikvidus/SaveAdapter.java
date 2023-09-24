@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -18,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newlikvidus.activity.LikvidCalcRender;
+import com.example.newlikvidus.data.AppDatabase;
+import com.example.newlikvidus.data.dao.SaveDao;
 import com.example.newlikvidus.data.entities.Save;
 
 import java.util.List;
@@ -27,12 +30,15 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
     private List<Save> saves;
     private List<Float> values;
     private static Context context;
-
+    private AppDatabase db;
+    private SaveDao saveDao;
     public SaveAdapter(Context context, List<Save> saves, List<Float> values) {
         this.context = context;
         this.saves = saves;
         this.values = values;
         this.inflater = LayoutInflater.from(context);
+        db = AppDatabase.getInstance(context);
+        saveDao = db.saveDao();
     }
     @Override
     public SaveAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -176,6 +182,14 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
         //что был удалён элемент по нах-ся индексу (адаптер отрисует изменение)
         public void removeItem(){
             int index = getAdapterPosition();
+            Save newSave = new Save(saveAdapter.saves.get(index).getName(), saveAdapter.saves.get(index).getDescription(), saveAdapter.saves.get(index).getType_id_fk());
+            newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    saveAdapter.saveDao.delete(newSave);
+                }
+            }).start();
             saveAdapter.saves.remove(index);
             saveAdapter.values.remove(index);
             saveAdapter.notifyItemRemoved(getAdapterPosition());
@@ -185,6 +199,14 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
             int index = getAdapterPosition();
             saveAdapter.saves.get(index).setName(newName);
             saveAdapter.notifyItemChanged(index);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Save newSave = new Save(newName, saveAdapter.saves.get(index).getDescription(), saveAdapter.saves.get(index).getType_id_fk());
+                    newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
+                    saveAdapter.saveDao.update(newSave);
+                }
+            }).start();
         }
         //changeDescription изменяет описание выбранного элемента
         //и уведомляет адаптер (адаптер отрисует изменение)
@@ -192,6 +214,15 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
             int index = getAdapterPosition();
             saveAdapter.saves.get(index).setDescription(newDescription);
             saveAdapter.notifyItemChanged(index);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Save newSave = new Save(saveAdapter.saves.get(index).getName(), newDescription, saveAdapter.saves.get(index).getType_id_fk());
+                    newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
+                    saveAdapter.saveDao.update(newSave);
+                }
+            }).start();
         }
 
         private void showPopupMenu(View v) {

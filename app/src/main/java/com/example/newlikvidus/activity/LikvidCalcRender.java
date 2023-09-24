@@ -1,19 +1,26 @@
 package com.example.newlikvidus.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.newlikvidus.LikvidCalculator;
 import com.example.newlikvidus.LikvidusCalcAdapter;
 import com.example.newlikvidus.R;
 import com.example.newlikvidus.data.AppDatabase;
+import com.example.newlikvidus.data.DbIdConstants;
 import com.example.newlikvidus.data.dao.CharacterDao;
 import com.example.newlikvidus.data.dao.ValueDao;
 import com.example.newlikvidus.data.entities.Character;
@@ -37,10 +44,12 @@ public class LikvidCalcRender extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private TextView resultDescription, resultDescription1, resultDescription2, resultValue, resultValue1, resultValue2, resultValue3, resultValue4;
-    
+
     private LikvidCalculator likvidCalculator;
     private List<Float> unswerList;
     private LikvidusCalcAdapter adapter;
+    private List<Float> inputValueList;
+    ImageButton saveImageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +64,8 @@ public class LikvidCalcRender extends AppCompatActivity {
         resultValue2 = findViewById(R.id.resultValueText2);
         resultValue3 = findViewById(R.id.resultValueText3);
         resultValue4 = findViewById(R.id.resultValueText4);
+
+        saveImageButton = findViewById(R.id.saveButton);
 
         Bundle arguments = getIntent().getExtras();
         try{
@@ -82,7 +93,7 @@ public class LikvidCalcRender extends AppCompatActivity {
             public void run() {
                 valueDao = db.valueDao();
                 characterDao = db.characterDao();
-                
+
                 List<String> characterNameList = new ArrayList<>();
                 List<Float> characterValueList = new ArrayList<>();
                 List<Float> characterKoefList = new ArrayList<>();
@@ -111,7 +122,16 @@ public class LikvidCalcRender extends AppCompatActivity {
                         Log.e("Char_ID", String.valueOf(character.getCharacter_id()));
                         Log.e("Save_ID", String.valueOf(save.getSave_id()));
 
-                        characterValueList.add(valueDao.getByCharacter_idAndSave_id(character.getCharacter_id(), save.getSave_id()).getValue());
+//                        characterValueList.add(valueDao.getByCharacter_idAndSave_id(character.getCharacter_id(), save.getSave_id()).getValue());
+                    }
+                    characterValueList.add(valueDao.getByCharacter_idAndSave_id(DbIdConstants.ID_RESULT, save.getSave_id()).getValue());
+
+                    characterValueList.add(characterList.get(1).getDefault_value());
+                    characterValueList.add(characterList.get(2).getDefault_value());
+                    characterValueList.add(characterList.get(3).getDefault_value());
+                    characterValueList.add(characterList.get(4).getDefault_value());
+                    for (int i = 5; i < characterList.size(); i++) {
+                        characterValueList.add(valueDao.getByCharacter_idAndSave_id(characterList.get(i).getCharacter_id(), save.getSave_id()).getValue());
                     }
                 }
 
@@ -126,12 +146,22 @@ public class LikvidCalcRender extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 });
+                likvidCalculator = new LikvidCalculator(characterValueList.get(0), characterValueList.get(1),
+                        characterValueList.get(2), characterValueList.get(3), characterValueList.get(4),
+                        characterKoefList.subList(5, characterKoefList.size()));
+                if(save != null){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            calculate(findViewById(android.R.id.content));
+                        }
+                    });
+                }
+                Log.e("Calculator", likvidCalculator.toString());
             }
         }).start();
 
-        likvidCalculator = new LikvidCalculator(characterNameList.get(0).getValue(), characterNameList.get(1).getValue(),
-                                                                characterNameList.get(2).getValue(), characterNameList.get(3).getValue(), 
-                                                                characterKoefList.characterNameList.subList(5, characterKoefList.size()));
+
     }
 
     private static Context getContext(){
@@ -139,16 +169,89 @@ public class LikvidCalcRender extends AppCompatActivity {
     }
 
     public void calculate(View view){
-        List<Float> inputValueList = adapter.getInputValues();
-        unswerList = likvidCalculator.calculate(inputValueList);
-        
-        resultValue.setText(unswerList.get(0));
-        resultValue1.setText(unswerList.get(1));
-        resultValue2.setText(unswerList.get(2));
-        resultValue3.setText(unswerList.get(3));
-        resultValue4.setText(unswerList.get(4));
-    }
-    public void save(View view){
+        Log.e("ChildCPint", String.valueOf(recyclerView.getChildCount()));
+        inputValueList = adapter.getInputValues();
 
+        for (Float input: inputValueList){
+            Log.e("inputValue", input.toString());
+        }
+
+        unswerList = likvidCalculator.calculate(inputValueList);
+
+        for (Float unswer: unswerList){
+            Log.e("unswer", unswer.toString());
+        }
+
+        resultValue.setText(unswerList.get(0).toString());
+        resultValue1.setText(unswerList.get(1).toString());
+        resultValue2.setText(unswerList.get(2).toString());
+        resultValue3.setText(unswerList.get(3).toString());
+        resultValue4.setText(unswerList.get(4).toString());
+
+        saveImageButton.setVisibility(View.VISIBLE);
+    }
+
+    //
+    public void save(View view){
+        Context context = getContext();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.name_item_window);
+
+        final EditText nameInput = new EditText(context);
+        nameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        nameInput.setText(R.string.saved_calc);
+        builder.setView(nameInput);
+        builder.setPositiveButton(R.string.ready, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                builder1.setTitle(R.string.description_item_window);
+
+                final EditText descriptionInput = new EditText(context);
+                descriptionInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder1.setView(descriptionInput);
+                builder1.setPositiveButton(R.string.ready, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Save save = new Save(nameInput.getText().toString(), descriptionInput.getText().toString(), type_id);
+                                long newSaveId = db.saveDao().insert(save);
+
+                                Value resultValue = new Value(DbIdConstants.ID_RESULT, newSaveId, unswerList.get(0));
+                                long newValueId = db.valueDao().insert(resultValue);
+
+                                Value value;
+
+                                for (int i = 5; i < characterList.size(); i++) {
+                                    Log.e("char"+i, characterList.get(i).toString());
+                                    Log.e("inputValue"+i, inputValueList.get(i-5).toString());
+                                    value = new Value(characterList.get(i).getCharacter_id(), newSaveId, inputValueList.get(i-5));
+                                    db.valueDao().insert(value);
+                                }
+
+//                                Log.e("newValueId", String.valueOf(newValueId));
+                            }
+                        }).start();
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                nameInput.getText().toString() + " " + getString(R.string.saved), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+                builder1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder1.show();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
     }
 }
