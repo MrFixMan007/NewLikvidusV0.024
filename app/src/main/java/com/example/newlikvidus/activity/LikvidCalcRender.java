@@ -71,13 +71,11 @@ public class LikvidCalcRender extends AppCompatActivity {
         try{
             save = (Save) arguments.get("save");
             type_id = save.getType_id_fk();
-            Log.e("SAVE_VALUE", save.toString());
         } catch (Exception e){
             try {
                 type_id = arguments.getLong("type_id");
-                Log.e("TYPE_VALUE", String.valueOf(type_id));
             } catch (Exception ex){
-                Log.e("SUKA", "ПИЗДЕЦ");
+                Log.e("BAD", "BAD");
             }
         }
 
@@ -119,26 +117,26 @@ public class LikvidCalcRender extends AppCompatActivity {
                     for (Character character: characterList) {
                         characterNameList.add(character.getName());
                         characterKoefList.add(character.getKoef());
-                        Log.e("Char_ID", String.valueOf(character.getCharacter_id()));
-                        Log.e("Save_ID", String.valueOf(save.getSave_id()));
-
-//                        characterValueList.add(valueDao.getByCharacter_idAndSave_id(character.getCharacter_id(), save.getSave_id()).getValue());
                     }
-                    characterValueList.add(valueDao.getByCharacter_idAndSave_id(DbIdConstants.ID_RESULT, save.getSave_id()).getValue());
+                    characterValueList.add(valueDao.getByCharacter_idAndSave_id(
+                            DbIdConstants.ID_RESULT, save.getSave_id()).getValue());
 
                     characterValueList.add(characterList.get(1).getDefault_value());
                     characterValueList.add(characterList.get(2).getDefault_value());
                     characterValueList.add(characterList.get(3).getDefault_value());
                     characterValueList.add(characterList.get(4).getDefault_value());
                     for (int i = 5; i < characterList.size(); i++) {
-                        characterValueList.add(valueDao.getByCharacter_idAndSave_id(characterList.get(i).getCharacter_id(), save.getSave_id()).getValue());
+                        characterValueList.add(valueDao.getByCharacter_idAndSave_id
+                                (characterList.get(i).getCharacter_id(),
+                                save.getSave_id()).getValue());
                     }
                 }
-
                 ready = true;
 
                 // создаем адаптер
-                adapter = new LikvidusCalcAdapter(getContext(), characterNameList.subList(5, characterNameList.size()), characterValueList.subList(5, characterValueList.size()));
+                adapter = new LikvidusCalcAdapter(getContext(),
+                        characterNameList.subList(5, characterNameList.size()),
+                        characterValueList.subList(5, characterValueList.size()));
                 // устанавливаем для списка адаптер
                 runOnUiThread(new Runnable() {
                     @Override
@@ -146,8 +144,9 @@ public class LikvidCalcRender extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 });
-                likvidCalculator = new LikvidCalculator(characterValueList.get(0), characterValueList.get(1),
-                        characterValueList.get(2), characterValueList.get(3), characterValueList.get(4),
+                likvidCalculator = new LikvidCalculator(characterValueList.get(0),
+                        characterValueList.get(1), characterValueList.get(2),
+                        characterValueList.get(3), characterValueList.get(4),
                         characterKoefList.subList(5, characterKoefList.size()));
                 if(save != null){
                     runOnUiThread(new Runnable() {
@@ -157,11 +156,8 @@ public class LikvidCalcRender extends AppCompatActivity {
                         }
                     });
                 }
-                Log.e("Calculator", likvidCalculator.toString());
             }
         }).start();
-
-
     }
 
     private static Context getContext(){
@@ -169,18 +165,9 @@ public class LikvidCalcRender extends AppCompatActivity {
     }
 
     public void calculate(View view){
-        Log.e("ChildCPint", String.valueOf(recyclerView.getChildCount()));
         inputValueList = adapter.getInputValues();
 
-        for (Float input: inputValueList){
-            Log.e("inputValue", input.toString());
-        }
-
         unswerList = likvidCalculator.calculate(inputValueList);
-
-        for (Float unswer: unswerList){
-            Log.e("unswer", unswer.toString());
-        }
 
         resultValue.setText(unswerList.get(0).toString());
         resultValue1.setText(unswerList.get(1).toString());
@@ -223,15 +210,10 @@ public class LikvidCalcRender extends AppCompatActivity {
                                 long newValueId = db.valueDao().insert(resultValue);
 
                                 Value value;
-
                                 for (int i = 5; i < characterList.size(); i++) {
-                                    Log.e("char"+i, characterList.get(i).toString());
-                                    Log.e("inputValue"+i, inputValueList.get(i-5).toString());
                                     value = new Value(characterList.get(i).getCharacter_id(), newSaveId, inputValueList.get(i-5));
                                     db.valueDao().insert(value);
                                 }
-
-//                                Log.e("newValueId", String.valueOf(newValueId));
                             }
                         }).start();
                         Toast toast = Toast.makeText(getApplicationContext(),

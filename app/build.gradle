@@ -26,6 +26,23 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.example.newlikvidus'
+
+    defaultConfig {
+
+        // ... (applicationId, miSdkVersion, etc)
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    allprojects {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
 
 dependencies {

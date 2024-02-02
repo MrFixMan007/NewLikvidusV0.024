@@ -8,5 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkRed">#BA0000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="backgroundColor">#1A1D24</color>
+    <color name="primaryElementsColor">#363E4B</color>
+    <color name="secondaryElementsColor">#A7B0BF</color>
+    <color name="specialActionElementsColor">#0450C0</color>
+
 
 </resources>

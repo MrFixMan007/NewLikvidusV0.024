@@ -46,8 +46,9 @@ public class LikvidSaves extends AppCompatActivity {
                 saves = saveDao.getByType_id(1);
                 values = new ArrayList<>();
                 for (int i = 0; i < saves.size(); i++) {
-                    values.add(valueDao.getByCharacter_idAndSave_id(1, saves.get(i).getSave_id()).getValue()); //добавляю в values нужный результат по id результат (1) и id сейва
-                    Log.e("VALUE", values.get(i).toString());
+                    values.add(valueDao.getByCharacter_idAndSave_id(1,
+                            saves.get(i).getSave_id()).getValue());
+                //добавляю в values нужный результат по id результат (1) и id сейва
                 }
                 ready = true;
 

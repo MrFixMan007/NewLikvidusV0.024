@@ -20,7 +20,7 @@ public class Save implements Serializable {
     @NonNull
     private String name;
     private String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-    @NonNull
+    @NonNull @ColumnInfo(index = true)
     private long type_id_fk;
     private String description;
 

@@ -2,8 +2,10 @@ package com.example.newlikvidus.data.entities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "character", foreignKeys = @ForeignKey(entity = Type.class,
@@ -11,31 +13,36 @@ import androidx.room.PrimaryKey;
 //parentColumns указал id из таблицы type, childColumns - внешний ключ из Character
 public class Character {
     @PrimaryKey(autoGenerate = true) @NonNull
-    private long character_id;
+    public long character_id;
+    @NonNull @ColumnInfo(index = true)
+    public long type_id_fk;
     @NonNull
-    private long type_id_fk;
+    public String name;
     @NonNull
-    private String name;
+    public float low;
     @NonNull
-    private float low;
-    @NonNull
-    private float top;
-    private String description;
-    private String measured_in;
-    private float default_value;
-    private float koef;
+    public float top;
+    public String description;
+    public String measured_in;
+    public float default_value;
+    public float koef;
 
     //Конструкторы
-    public Character(){}
+    @Ignore
+    public Character() {
+    }
 
+    @Ignore
     public Character(long type_id_fk, @NonNull String name, float low, float top) {
         this(type_id_fk, name, low, top, "", "");
     }
 
+    @Ignore
     public Character(long type_id_fk, @NonNull String name, float low, float top, @NonNull String description) {
         this(type_id_fk, name, low, top, description, "");
     }
 
+    @Ignore
     public Character(long type_id_fk, @NonNull String name, float low, float top, @NonNull String description, @NonNull String measured_in) {
         this.type_id_fk = type_id_fk;
         this.low = low;
@@ -45,7 +52,7 @@ public class Character {
         setMeasured_in(measured_in);
         this.koef = 1;
     }
-
+    @Ignore
     public Character(long type_id_fk, @NonNull String name, float low, float top, @NonNull String description, @NonNull String measured_in, float default_value) {
         this.type_id_fk = type_id_fk;
         this.low = low;

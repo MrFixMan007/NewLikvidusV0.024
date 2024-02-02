@@ -31,7 +31,6 @@ public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapte
     private List<TextView> textViews = new ArrayList<>();
 
     private static Context context;
-
     public LikvidusCalcAdapter(Context context, List<String> characterNameList, List<Float> characterValueList) {
         this.context = context;
         this.characterNameList = characterNameList;
@@ -40,11 +39,10 @@ public class LikvidusCalcAdapter extends RecyclerView.Adapter<LikvidusCalcAdapte
     }
     @Override
     public LikvidusCalcAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = inflater.inflate(R.layout.likvidus_character_list_item, parent, false);
-        return new ViewHolder(view).linkAdapter(this); //вызовет метод, который прикрепит ссылку в одном месте внизу и вернёт её же
+        return new ViewHolder(view).linkAdapter(this);
+        //вызовет метод, который прикрепит ссылку в одном месте внизу и вернёт её же
     }
-
     @Override
     public void onBindViewHolder(LikvidusCalcAdapter.ViewHolder holder, int position) {
         String characterName = characterNameList.get(position);

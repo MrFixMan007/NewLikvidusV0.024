@@ -1,8 +1,10 @@
 package com.example.newlikvidus.data.entities;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "value", foreignKeys = {@ForeignKey(entity = Character.class,
@@ -11,16 +13,18 @@ import androidx.room.PrimaryKey;
 //parentColumns указал id из таблиц character и save, childColumns - внешний ключ из PossibleValue и Save
 public class Value {
     @PrimaryKey(autoGenerate = true) @NonNull
-    private long value_id;
+    public long value_id;
+    @NonNull @ColumnInfo(index = true)
+    public long character_id_fk;
+    @NonNull @ColumnInfo(index = true)
+    public long save_id_fk;
     @NonNull
-    private long character_id_fk;
-    @NonNull
-    private long save_id_fk;
-    @NonNull
-    private float value;
+    public float value;
     //Конструкторы
 
+    @Ignore
     public Value(){}
+
     public Value(long character_id_fk, long save_id_fk, float value) {
         this.character_id_fk = character_id_fk;
         this.save_id_fk = save_id_fk;

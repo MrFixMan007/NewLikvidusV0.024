@@ -182,7 +182,9 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
         //что был удалён элемент по нах-ся индексу (адаптер отрисует изменение)
         public void removeItem(){
             int index = getAdapterPosition();
-            Save newSave = new Save(saveAdapter.saves.get(index).getName(), saveAdapter.saves.get(index).getDescription(), saveAdapter.saves.get(index).getType_id_fk());
+            Save newSave = new Save(saveAdapter.saves.get(index).getName(),
+                    saveAdapter.saves.get(index).getDescription(),
+                    saveAdapter.saves.get(index).getType_id_fk());
             newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
             new Thread(new Runnable() {
                 @Override
@@ -202,7 +204,8 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Save newSave = new Save(newName, saveAdapter.saves.get(index).getDescription(), saveAdapter.saves.get(index).getType_id_fk());
+                    Save newSave = new Save(newName, saveAdapter.saves.get(index).getDescription(),
+                            saveAdapter.saves.get(index).getType_id_fk());
                     newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
                     saveAdapter.saveDao.update(newSave);
                 }
@@ -218,7 +221,8 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder>{
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Save newSave = new Save(saveAdapter.saves.get(index).getName(), newDescription, saveAdapter.saves.get(index).getType_id_fk());
+                    Save newSave = new Save(saveAdapter.saves.get(index).getName(),
+                            newDescription, saveAdapter.saves.get(index).getType_id_fk());
                     newSave.setSave_id(saveAdapter.saves.get(index).getSave_id());
                     saveAdapter.saveDao.update(newSave);
                 }

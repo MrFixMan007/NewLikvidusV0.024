@@ -1,0 +1,340 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "9bc7b2f9e4128c8068655177e303cc95",
+    "entities": [
+      {
+        "tableName": "save",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`save_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `date` TEXT, `type_id_fk` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`type_id_fk`) REFERENCES `type`(`type_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "save_id",
+            "columnName": "save_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type_id_fk",
+            "columnName": "type_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "save_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_save_type_id_fk",
+            "unique": false,
+            "columnNames": [
+              "type_id_fk"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_save_type_id_fk` ON `${TABLE_NAME}` (`type_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "type",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "type_id_fk"
+            ],
+            "referencedColumns": [
+              "type_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "type",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT COLLATE LOCALIZED)",
+        "fields": [
+          {
+            "fieldPath": "type_id",
+            "columnName": "type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "type_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_type_name",
+            "unique": true,
+            "columnNames": [
+              "name"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_type_name` ON `${TABLE_NAME}` (`name`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "character",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id_fk` INTEGER NOT NULL, `name` TEXT NOT NULL, `low` REAL NOT NULL, `top` REAL NOT NULL, `description` TEXT, `measured_in` TEXT, `default_value` REAL NOT NULL, `koef` REAL NOT NULL, FOREIGN KEY(`type_id_fk`) REFERENCES `type`(`type_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "character_id",
+            "columnName": "character_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type_id_fk",
+            "columnName": "type_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "low",
+            "columnName": "low",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "top",
+            "columnName": "top",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "measured_in",
+            "columnName": "measured_in",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "default_value",
+            "columnName": "default_value",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "koef",
+            "columnName": "koef",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "character_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_character_type_id_fk",
+            "unique": false,
+            "columnNames": [
+              "type_id_fk"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_character_type_id_fk` ON `${TABLE_NAME}` (`type_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "type",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "type_id_fk"
+            ],
+            "referencedColumns": [
+              "type_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "value",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`value_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `character_id_fk` INTEGER NOT NULL, `save_id_fk` INTEGER NOT NULL, `value` REAL NOT NULL, FOREIGN KEY(`character_id_fk`) REFERENCES `character`(`character_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`save_id_fk`) REFERENCES `save`(`save_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "value_id",
+            "columnName": "value_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "character_id_fk",
+            "columnName": "character_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "save_id_fk",
+            "columnName": "save_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "value_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_value_character_id_fk",
+            "unique": false,
+            "columnNames": [
+              "character_id_fk"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_value_character_id_fk` ON `${TABLE_NAME}` (`character_id_fk`)"
+          },
+          {
+            "name": "index_value_save_id_fk",
+            "unique": false,
+            "columnNames": [
+              "save_id_fk"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_value_save_id_fk` ON `${TABLE_NAME}` (`save_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "character_id_fk"
+            ],
+            "referencedColumns": [
+              "character_id"
+            ]
+          },
+          {
+            "table": "save",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "save_id_fk"
+            ],
+            "referencedColumns": [
+              "save_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "possible_value",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`possible_value_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `character_id_fk` INTEGER NOT NULL, FOREIGN KEY(`character_id_fk`) REFERENCES `character`(`character_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "possible_value_id",
+            "columnName": "possible_value_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "character_id_fk",
+            "columnName": "character_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "possible_value_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_possible_value_character_id_fk",
+            "unique": false,
+            "columnNames": [
+              "character_id_fk"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_possible_value_character_id_fk` ON `${TABLE_NAME}` (`character_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "character_id_fk"
+            ],
+            "referencedColumns": [
+              "character_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9bc7b2f9e4128c8068655177e303cc95')"
+    ]
+  }
+}
